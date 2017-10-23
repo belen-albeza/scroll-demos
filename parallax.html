@@ -1,0 +1,159 @@
+<!doctype>
+<head>
+    <title>Parallax</title>
+    <meta charset="utf-8">
+
+    <link href="https://fonts.googleapis.com/css?family=Zilla+Slab:400,700" rel="stylesheet">
+
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(94, 63, 107) url(images/purple.png) left top;
+    font-family: 'Zilla Slab', serif;
+    color: #fff;
+}
+
+.parallax-wrapper {
+    perspective: 1px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+}
+.layer {
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.ship {
+    transform: translateZ(-1px) scale(2);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 120vh;
+}
+
+.stars {
+    transform: translateZ(-4px) scale(5);
+    display: block;
+    height: 150vh;
+}
+.stars > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.quotes, .heading, .soon {
+    /* these layers move at the same speed */
+    transform: translateZ(-9px) scale(10);
+}
+
+.quotes {
+    top: 200vh;
+    font-size: 3vh;
+    height: 60vh;
+}
+.quotes figure {
+    margin: 2vh auto;
+    border: 0.5vh solid #fffc;
+    padding: 2vh;
+    width: 80%;
+}
+.quotes blockquote {
+    font-style: italic;
+}
+.quotes figure > footer {
+    font-weight: bold;
+}
+
+.soon {
+    font-size: 5vh;
+    top: 100em;
+    height: 30vh;
+}
+.soon p {
+    padding: 5vh;
+    text-align: center;
+}
+.soon p:last-child {
+    margin-top: 15vh;
+}
+
+.title {
+    font-size: 8vh;
+    font-weight: bolder;
+    text-shadow: 0 0 1vh #fff9;
+    margin: 6vh auto 4vh auto;
+    background: #0003;
+    width: 90%;
+    text-align: center;
+    padding: 2vh 0;
+    box-shadow: 0px 0px 1.5vh #fffa;
+    border-radius: 100%;
+}
+.subtitle {
+    font-size: 3vh;
+    text-align: center;
+}
+.subtitle b {
+    font-size: 1.2em;
+    text-shadow: 0.2vh 0.2vh 0 #000;
+}
+    </style>
+</head>
+
+<body>
+    <div class="parallax-wrapper">
+        <div class="layer stars"></div>
+        <header class="layer heading">
+            <h1 class="title">Payun-payun</h1>
+            <p class="subtitle">An amazing shooter by<br>
+            <b>~ The GameDev Fairies ~</b></p>
+        </header>
+        <div class="layer quotes">
+            <figure>
+                <blockquote><p>WOw. Much game.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Many graphics.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Such amazing.</p></blockquote>
+                <footer>
+                    <p>– Dogue</p>
+                </footer>
+            </figure>
+            <figure>
+                <blockquote><p>GOTY.</p></blockquote>
+                <footer>
+                    <p>– True Gamer</p>
+                </footer>
+            </figure>
+        </div>
+        <div class="layer soon">
+            <p>Coming soon in your favourite web browser!</p>
+            <p>(Psttt… that browser is Firefox.)</p>
+        </div>
+        <div class="layer ship"><img src="images/ship.png"></div>
+    </div>
+
+<script>
+
+// randomly spawn IMG stars into the .stars layer
+let layer = document.querySelector('.stars');
+
+for (let i = 0; i < 20; i++) {
+    let img = document.createElement('img');
+    img.src = 'images/star1.png';
+    let x = Math.random() * 100;
+    let y = Math.random() * 100;
+    img.style.left = `${x}%`;
+    img.style.top = `${y}%`;
+    img.style.opacity = Math.random();
+    layer.insertBefore(img, layer.firstChild);
+}
+</script>
+</body>
